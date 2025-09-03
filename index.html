@@ -7,7 +7,7 @@
   <title>SafeCart — Sua casa mais segura e organizada</title>
   <meta name="description" content="SafeCart transforma suas notas fiscais em inventário da sua casa, avisa sobre recalls e ajuda a repor o que está acabando. Segurança, organização e economia em um só app."/>
   <style>
-    :root { --bg:#0b1020; --card:#0f162d; --muted:#a3adbf; --text:#f2f5fb; --accent:#6d5ef1; --accent-2:#48d2a0; --border:#1f2740; --ok:#10b981; --danger:#ef4444; }
+    :root { --bg:#0b1020; --card:#0f162d; --muted:#a3adbf; --text:#f2f5fb; --accent:#6d5ef1; --accent-2:#48d2a0; --border:#1f2740; }
     * { box-sizing: border-box; } html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; scroll-behavior:smooth; }
     .container { max-width:1080px; margin:0 auto; padding:20px; }
     .nav { display:flex; justify-content:space-between; align-items:center; gap:16px; }
@@ -46,7 +46,7 @@
     <nav>
       <a href="#beneficios">Benefícios</a>
       <a href="#como-funciona">Como funciona</a>
-      <a href="#privacidade">Privacidade</a>
+      <a href="privacy.html">Privacidade</a>
       <a href="#faq">FAQ</a>
       <a class="cta" href="#cadastro">Quero experimentar</a>
     </nav>
@@ -99,14 +99,13 @@
       </div>
     </section>
 
-    <!-- SUBSTITUA o endpoint abaixo pelo seu ID do Formspree -->
+    <!-- Formulário (Formspree) com 'Obrigado' integrado -->
     <section id="cadastro" class="section">
       <h2>Entre para a lista e receba acesso primeiro</h2>
       <p>Deixe seu contato para receber o convite e novidades do SafeCart.</p>
 
       <form id="lead-form" action="https://formspree.io/f/mvgbvgrb" method="POST" class="form">
         <input type="hidden" name="_subject" value="SafeCart Waitlist" />
-        <!-- anti-spam opcional -->
         <input type="text" name="_gotcha" style="display:none" />
 
         <div class="grid cols-2">
@@ -166,14 +165,14 @@
 
   <footer class="container footer">
     <div>© <span id="year"></span> SafeCart • Todos os direitos reservados</div>
-    <div><a href="#privacidade" style="color:var(--muted)">Privacidade</a> • <a href="#faq" style="color:var(--muted)">FAQ</a></div>
+    <div><a href="privacy.html" style="color:var(--muted)">Privacidade</a> • <a href="#faq" style="color:var(--muted)">FAQ</a></div>
   </footer>
 
   <script>
     // Atualiza ano
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Submissão AJAX para integrar "Obrigado" na mesma página
+    // Submissão AJAX simples (Formspree) + "Obrigado" na mesma página
     const form = document.getElementById('lead-form');
     const successMsg = document.getElementById('msg-success');
     const errorMsg = document.getElementById('msg-error');
@@ -191,8 +190,8 @@
         // fallback local (se não configurou Formspree ainda)
         successMsg.classList.add('show');
         form.reset();
+        form.style.display = 'none';
         obrigado.classList.add('show');
-        obrigado.scrollIntoView({ behavior:'smooth', block:'center' });
         return;
       }
 
